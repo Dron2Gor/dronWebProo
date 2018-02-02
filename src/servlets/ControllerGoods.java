@@ -1,31 +1,30 @@
 package servlets;
 
+import beans.Good;
+import logic.ModelForGood;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
-@WebServlet("/first")
-public class FirstServlet extends HttpServlet {
-    static String st;
+@WebServlet("/good")
+public class ControllerGoods extends HttpServlet{
+        ModelForGood model=new ModelForGood();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter printWriter=resp.getWriter();
-        printWriter.write("Dron First Servlet");
-         st=req.getParameter("one");
-        if (st!=null)
-        printWriter.write(" "+st);
+        Good good=model.getGood();
+        req.setAttribute("good",good);
+        RequestDispatcher requestDispatcher=req.getRequestDispatcher("/index.jsp");
+        requestDispatcher.forward(req,resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String parametr=req.getParameter("info");
-        PrintWriter printWriter=resp.getWriter();
-        printWriter.write("Dron + ");
-        printWriter.write(parametr);
-//        req.getRequestDispatcher("WEB/")
+
     }
 }

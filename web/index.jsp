@@ -14,14 +14,26 @@
 </head>
 <body>
 <H1>Welcome to Dron's Store. Hello!!!</H1>
-<jsp:include page="/first"/>
+
 <div class="border">
-    <div>
-        <form action="first" method="post">
-            <button type="submit" name="button" value="Olesya">Button Olesya</button>
+    <%--<div>--%>
+        <%--<form action="first" method="post">--%>
+            <%--<button type="submit" name="button" value="Olesya">Button Olesya</button>--%>
+        <%--</form>--%>
+        <%--<a class="btn" onclick="" href="first?one=Olesya">Показать все имена</a>--%>
+    <%--</div>--%>
+
+        <%! int i=0;%>
+        <% for (i=0; i<2; i++) { %>
+    ${good.name}
+    ${good.price}
+    <form action="info" method="post">
+        <button type="submit" name="info" value="1">more info</button>
+    </form>
+        <form action="buy" method="post">
+            <button type="submit" name="buy" value="${good.articul}">buy this</button>
         </form>
-        <a class="btn" onclick=""  href="first?one=Olesya" >Показать все имена</a>
-    </div>
+<% }%>
 </div>
 </body>
 </html>

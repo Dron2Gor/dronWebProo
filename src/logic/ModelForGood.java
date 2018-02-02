@@ -6,7 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModelForGood {
-    List<Good> listOfGoods = new ArrayList<>();
+    ArrayList<Good> listOfGoods = new ArrayList<>();
+
+    public ModelForGood() {
+        makeListOfGoods();
+    }
+    public int size(){
+        return listOfGoods.size();
+    }
+
+    public ArrayList<Good> getListOfGoods() {
+        return listOfGoods;
+    }
 
     private void makeListOfGoods() {
         Good good1 = new Good();
@@ -28,7 +39,6 @@ public class ModelForGood {
     }
 
     public Good getGood(int articul) {
-        makeListOfGoods();
         return listOfGoods.get(articul);
     }
 

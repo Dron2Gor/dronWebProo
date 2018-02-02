@@ -10,17 +10,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet("/good")
 public class ControllerGoods extends HttpServlet{
         ModelForGood model=new ModelForGood();
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Good good=model.getGood();
-        req.setAttribute("good",good);
-        RequestDispatcher requestDispatcher=req.getRequestDispatcher("/index.jsp");
-        requestDispatcher.forward(req,resp);
+
+//            Good good=model.getGood(i);
+//            req.setAttribute("good",good);
+        ArrayList<Good> goods=model.getListOfGoods();
+        req.setAttribute("goods",goods);
+            RequestDispatcher requestDispatcher=req.getRequestDispatcher("/index.jsp");
+            requestDispatcher.forward(req,resp);
+
+
     }
 
     @Override

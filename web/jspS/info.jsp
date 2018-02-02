@@ -16,7 +16,6 @@
 <p>Information: ${good.description}</p>
 <p>Price: ${good.price}</p>
 
-
     <button onclick="location.href='/good'">back</button>
 
 </body>

@@ -16,8 +16,8 @@ public class Info extends HttpServlet {
     ModelForGood model=new ModelForGood();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//       int articul=Integer.parseInt(req.getAttribute("info").toString());
-        Good good=model.getGood();
+       int articul=Integer.parseInt(req.getParameter("info"));
+        Good good=model.getGood(articul);
         System.out.println(good.getName());
         req.setAttribute("good",good);
         RequestDispatcher requestDispatcher=req.getRequestDispatcher("/jspS/info.jsp");

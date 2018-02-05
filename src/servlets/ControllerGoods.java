@@ -18,14 +18,10 @@ public class ControllerGoods extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-//            Good good=model.getGood(i);
-//            req.setAttribute("good",good);
         ArrayList<Good> goods=model.getListOfGoods();
         req.setAttribute("goods",goods);
             RequestDispatcher requestDispatcher=req.getRequestDispatcher("/index.jsp");
             requestDispatcher.forward(req,resp);
-
-
     }
 
     @Override

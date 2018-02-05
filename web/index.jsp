@@ -1,5 +1,6 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="beans.Good" %><%--
+<%@ page import="beans.Good" %>
+<%--
   Created by IntelliJ IDEA.
   User: Dron
   Date: 01.02.2018
@@ -23,8 +24,6 @@
     <%--</form>--%>
     <%--<a class="btn" onclick="" href="first?one=Olesya">Показать все имена</a>--%>
     <%--</div>--%>
-
-
     <%--${goods}--%>
      <% ArrayList<Good> list= (ArrayList<Good>) request.getAttribute("goods");
      for (Good good:list){
@@ -36,7 +35,6 @@
 
     <form action="info" method="post">
         <button type="submit" name="info" value="<%=good.getArticul()%>">more info</button>
-
     </form>
 
     <form action="buy" method="post">

@@ -1,31 +1,31 @@
 package servlets;
 
+import beans.Product;
+import logic.ModelForProduct;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 
-@WebServlet("/first")
-public class FirstServlet extends HttpServlet {
-    static String st;
+@WebServlet("/product")
+public class ControllerProducts extends HttpServlet{
+        ModelForProduct model=new ModelForProduct();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter printWriter=resp.getWriter();
-        printWriter.write("Dron First Servlet");
-         st=req.getParameter("one");
-        if (st!=null)
-        printWriter.write(" "+st);
+
+        ArrayList<Product> products =model.getListOfProducts();
+        req.getServletContext().setAttribute("products", products);
+            RequestDispatcher requestDispatcher=req.getRequestDispatcher("jspS/main.jsp");
+            requestDispatcher.forward(req,resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String parametr=req.getParameter("info");
-        PrintWriter printWriter=resp.getWriter();
-        printWriter.write("Dron + ");
-        printWriter.write(parametr);
-//        req.getRequestDispatcher("WEB/")
+
     }
 }

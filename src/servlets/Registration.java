@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet( "/SingingUp")
-public class SingingUp extends HttpServlet {
+@WebServlet( "/Registration")
+public class Registration extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("login");
@@ -25,11 +25,11 @@ public class SingingUp extends HttpServlet {
             person.setPassword(password);
             person.setEmail(email);
             request.getSession().setAttribute("person", person);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("jspS/main.jsp");
             requestDispatcher.forward(request, response);
         } else {
 
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("jspS/singingUp.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("jspS/registration.jsp");
             requestDispatcher.forward(request, response);
         }
     }

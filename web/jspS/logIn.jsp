@@ -21,10 +21,10 @@
     <%=error%>
 </p>
 <%error = "";%>
-<form action="/SingingIn" method="post">
-    Enter login: <input type='text' name='login' value="<%=userName%>"/> <br/>
+<form action="/LogIn" method="post">
+    Enter login: <input type='text' name="userName" value="<%=userName%>"/> <br/>
     Enter password: <input type='password' name='password' value="<%=password%>"/> <br/>
-    <input type='submit' value="Singing in"/>
+    <input type='submit' value="Log in"/>
 </form>
 
 </body>

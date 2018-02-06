@@ -1,18 +1,18 @@
 package beans;
 
-public class Good {
+public class Product {
     private String name;
     private Double price;
     private String description;
     private int count;
-    private int articul;
+    private int id;
 
-    public int getArticul() {
-        return articul;
+    public int getId() {
+        return id;
     }
 
-    public void setArticul(int articul) {
-        this.articul = articul;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

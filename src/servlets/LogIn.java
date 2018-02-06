@@ -9,30 +9,33 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static logic.ServicesForCockie.*;
+import static logic.ServicesForSession.*;
 
-@WebServlet("/SingingIn")
-public class SengingIn extends HttpServlet {
+@WebServlet("/LogIn")
+public class LogIn extends HttpServlet {
     private RequestDispatcher requestDispatcher;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String userName = request.getParameter("login");
+
+        String userName = request.getParameter("userName");
         String password = request.getParameter("password");
-        Boolean isLogged;
 
         if (userName.equals("Dron") & password.equals("6666")) {
 
             addUserNameToCookie(userName,response);
             addPasswordToCookie(password,response);
+            addUserNameToSession(userName,request);
+            addPasswordToSession(password,request);
 
-            isLogged = true;
-            request.getSession().setAttribute("isLogged", isLogged);
+            Boolean isLogIn = true;
+            request.getSession().setAttribute("isLogIn", isLogIn);
 
-            requestDispatcher = request.getRequestDispatcher("/index.jsp");
+            requestDispatcher = request.getRequestDispatcher("jspS/main.jsp");
             requestDispatcher.forward(request, response);
         } else {
 
             request.setAttribute("error", "Name or password is incorrect");
-            requestDispatcher = request.getRequestDispatcher("/jspS/singingIn.jsp");
+            requestDispatcher = request.getRequestDispatcher("/jspS/logIn.jsp");
             requestDispatcher.forward(request, response);
         }
 

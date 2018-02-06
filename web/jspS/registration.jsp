@@ -6,7 +6,7 @@
 <body>
 <h3>Singing Up:</h3>
 
-<form action="SingingUp" method="post">
+<form action="/Registration" method="post">
     Enter login: <input type='text' name='login'/> <br />
     Enter email: <input type='email' name='email' /> <br />
     Enter password: <input type='password' name='password' /> <br />

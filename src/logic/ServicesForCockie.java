@@ -19,6 +19,7 @@ public class ServicesForCockie {
     public static String getUserNameFromCookie(HttpServletRequest request) {
         String userName = "";
         Cookie[] cookies = request.getCookies();
+        if (cookies!=null)
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("userName")) userName = cookie.getValue();
         }
@@ -27,6 +28,7 @@ public class ServicesForCockie {
     public static String getPasswordFromCookie(HttpServletRequest request) {
         String password = "";
         Cookie[] cookies = request.getCookies();
+        if (cookies!=null)
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("password")) password = cookie.getValue();
         }

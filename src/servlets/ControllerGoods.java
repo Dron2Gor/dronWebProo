@@ -19,7 +19,7 @@ public class ControllerGoods extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         ArrayList<Good> goods=model.getListOfGoods();
-        req.setAttribute("goods",goods);
+        req.getSession().setAttribute("goods",goods);
             RequestDispatcher requestDispatcher=req.getRequestDispatcher("/index.jsp");
             requestDispatcher.forward(req,resp);
     }

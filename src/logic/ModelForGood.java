@@ -3,7 +3,6 @@ package logic;
 import beans.Good;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ModelForGood {
     ArrayList<Good> listOfGoods = new ArrayList<>();

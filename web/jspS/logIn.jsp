@@ -7,13 +7,15 @@
 </head>
 <body>
 <%!
-    String userName ;
-    String password ;
+    String loginName;
+    String password;
     String error = "";
 %>
-<% if (request.getAttribute("error") != null) error = (String) request.getAttribute("error");
-    userName=getUserNameFromCookie(request);
-    password=getPasswordFromCookie(request);
+<% if (request.getAttribute("error") != null) {
+    error = (String) request.getAttribute("error");
+    }
+    loginName = getLoginNameFromCookie(request);
+    password = getPasswordFromCookie(request);
 
 %>
 <H3>Singing in:</H3>
@@ -22,7 +24,7 @@
 </p>
 <%error = "";%>
 <form action="/LogIn" method="post">
-    Enter login: <input type='text' name="userName" value="<%=userName%>"/> <br/>
+    Enter login: <input type='text' name="loginName" value="<%=loginName%>"/> <br/>
     Enter password: <input type='password' name='password' value="<%=password%>"/> <br/>
     <input type='submit' value="Log in"/>
 </form>

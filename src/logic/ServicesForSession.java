@@ -13,9 +13,15 @@ public class ServicesForSession {
         return isLogIn;
     }
 
-    public static void addUserNameToSession(String userName, HttpServletRequest request) {
+    public static void addFirstNameToSession(String firstName, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        session.setAttribute("userName", userName);
+        session.setAttribute("firstName", firstName);
+
+    }
+
+    public static void addLoginNameToSession(String loginName, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.setAttribute("loginName", loginName);
 
     }
 
@@ -24,13 +30,22 @@ public class ServicesForSession {
         session.setAttribute("password", password);
     }
 
-    public static String getUserNameFromSession(HttpServletRequest request) {
-        String userName;
+    public static String getLoginNameFromSession(HttpServletRequest request) {
+        String loginName;
         HttpSession session = request.getSession();
-        if (session.getAttribute("userName") != null)
-            userName = (String) session.getAttribute("userName");
-        else userName = "guest";
-        return userName;
+        if (session.getAttribute("loginName") != null)
+            loginName = (String) session.getAttribute("loginName");
+        else loginName = "guest";
+        return loginName;
+    }
+
+    public static String getFirstNameFromSession(HttpServletRequest request) {
+        String firstName="guest";
+        HttpSession session = request.getSession();
+        if (session.getAttribute("firstName") != null)
+            firstName = (String) session.getAttribute("firstName");
+
+        return firstName;
     }
 
 

@@ -3,6 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="static logic.ServicesForSession.*" %>
 <%@ page import="static logic.ServicesForContext.addProductsToContext" %>
+<%@ page import="static logic.ServicesForCockie.*" %>
 <html>
 <head>
     <link href="../css/main.css" rel="stylesheet" type="text/css"/>
@@ -11,8 +12,13 @@
 <body>
 <H1>Welcome to Dron's Store.</H1>
 
+<%!
+    String guest;
+%>
 <%
-    String guest = getUserNameFromSession(request);
+    if (request.getSession()==null)
+    guest = getFirstNameFromCookie(request);
+    else guest=getFirstNameFromSession(request);
 %>
 
 <div>
@@ -28,7 +34,7 @@
 
 <%} else {%>
     <div>
-        <button onclick="location.href='jspS/registration.jsp'">Registration</button>
+        <button onclick="location.href='jspS/registrationFirstStep.jsp'">Registration</button>
 
         <button onclick="location.href='jspS/logIn.jsp'">Log In</button>
     </div>

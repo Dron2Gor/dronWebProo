@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static logic.ServicesForCockie.*;
+import static logic.ServicesForDataBase.*;
 import static logic.ServicesForSession.*;
 
 @WebServlet("/LogIn")
@@ -16,32 +17,37 @@ public class LogIn extends HttpServlet {
     private RequestDispatcher requestDispatcher;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        String userName = request.getParameter("userName");
+        String error = "";
+        String loginName = request.getParameter("loginName");
+        String firstName = "";
         String password = request.getParameter("password");
 
-        if (userName.equals("Dron") & password.equals("6666")) {
+        if (!isLoginInBase(loginName)) {
+            error = "User " + loginName + " is not registered";
+            request.setAttribute("error", error);
+            requestDispatcher = request.getRequestDispatcher("/jspS/logIn.jsp");
+            requestDispatcher.forward(request, response);
 
-            addUserNameToCookie(userName,response);
-            addPasswordToCookie(password,response);
-            addUserNameToSession(userName,request);
-            addPasswordToSession(password,request);
+        } else if (password.equals(getPasswordFromBase(loginName))) {
+
+            firstName = getFirstNameFromBase(loginName);
+            addLoginNameToCookie(loginName, response);
+            addPasswordToCookie(password, response);
+            addFirstNameToCookie(firstName,response);
+
+            addFirstNameToSession(firstName,request);
+            addLoginNameToSession(loginName, request);
+            addPasswordToSession(password, request);
 
             Boolean isLogIn = true;
             request.getSession().setAttribute("isLogIn", isLogIn);
 
             requestDispatcher = request.getRequestDispatcher("jspS/main.jsp");
             requestDispatcher.forward(request, response);
-        } else {
-
-            request.setAttribute("error", "Name or password is incorrect");
+        } else
+            error = "Password is incorrect";
+            request.setAttribute("error", error);
             requestDispatcher = request.getRequestDispatcher("/jspS/logIn.jsp");
             requestDispatcher.forward(request, response);
-        }
-
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }

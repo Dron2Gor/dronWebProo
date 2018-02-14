@@ -2,12 +2,20 @@ package beans;
 
 public class Person {
 
-    private String firstName;
+    private String login;
     private String password;
+    private String firstName;
     private String lastName;
     private String email;
     private String phoneNumber;
-    private String address;
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
 
     public String getPassword() {
         return password;
@@ -48,14 +56,6 @@ public class Person {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
 

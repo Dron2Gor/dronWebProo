@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static logic.ServicesForDataBase.addPersonToBase;
-import static logic.ServicesForDispatcher.doDispatch;
+import static logic.ServicesForDispatcher.doDispatcherAndForward;
 import static logic.ServicesForFields.isEmpty;
 import static logic.ServicesForFields.isNotEmail;
 
@@ -24,10 +24,11 @@ public class RegistrationSecondStep extends HttpServlet {
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
+        String cantBeEmpty =" can not be empty.";
 
-        if (isEmpty(firstName)) error = error + " " + "FirstName can not be empty.";
-        if (isEmpty(lastName)) error = error + " " + "SecondName can not be empty.";
-        if (isEmpty(email)) error = error + " " + "Email can not be empty.";
+        if (isEmpty(firstName)) error = error + " FirstName"+cantBeEmpty;
+        if (isEmpty(lastName)) error = error + " SecondName"+cantBeEmpty;
+        if (isEmpty(email)) error = error + " Email"+cantBeEmpty;
         if (isEmpty(phone)) phone = "";
         if (isNotEmail(email)) error = error + " " + "Email address not valid.";
 
@@ -38,13 +39,13 @@ public class RegistrationSecondStep extends HttpServlet {
             person.setPhoneNumber(phone);
 
             addPersonToBase(person);
-            doDispatch("jspS/main.jsp", request, response);
+            doDispatcherAndForward("jspS/main.jsp", request, response);
         }
         request.setAttribute("firstName", firstName);
         request.setAttribute("lastName", lastName);
         request.setAttribute("email", email);
         request.setAttribute("phone", phone);
         request.setAttribute("error", error);
-        doDispatch("jspS/registrationSecondStep.jsp", request, response);
+        doDispatcherAndForward("jspS/registrationSecondStep.jsp", request, response);
     }
 }

@@ -5,7 +5,7 @@ import beans.Product;
 import java.util.ArrayList;
 
 public class ModelForProduct {
-    ArrayList<Product> listOfProducts = new ArrayList<>();
+    private ArrayList<Product> listOfProducts = new ArrayList<>();
 
     public ModelForProduct() {
         makeListOfProducts();

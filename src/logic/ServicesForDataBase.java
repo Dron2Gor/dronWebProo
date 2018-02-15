@@ -5,13 +5,12 @@ import beans.Person;
 import java.sql.*;
 
 public class ServicesForDataBase {
-    private static String userName = "root";
-    private static String password = "8888";
-    private static String connectionUrl = "jdbc:mysql://localhost:3306/DronShop";
 
-
-    public static Connection getConnnectionDB() throws ClassNotFoundException, SQLException {
+    private static Connection getConnnectionDB() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
+        String connectionUrl = "jdbc:mysql://localhost:3306/DronShop";
+        String password = "8888";
+        String userName = "root";
         Connection connection = DriverManager.getConnection(connectionUrl, userName, password);
         return connection;
     }
@@ -21,7 +20,8 @@ public class ServicesForDataBase {
         try {
             Connection connection = getConnnectionDB();
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT password FROM user WHERE loginName='" + loginName + "'");
+
+            ResultSet resultSet = statement.executeQuery(String.format("SELECT password FROM user WHERE loginName='%s'", loginName));
             resultSet.next();
             password = resultSet.getString("password");
 
@@ -29,9 +29,7 @@ public class ServicesForDataBase {
             statement.close();
             connection.close();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return password;
@@ -41,7 +39,8 @@ public class ServicesForDataBase {
         try {
             Connection connection = getConnnectionDB();
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT firstName FROM user WHERE loginName='" + loginName + "'");
+
+            ResultSet resultSet = statement.executeQuery(String.format("SELECT firstName FROM user WHERE loginName='%s'", loginName));
             resultSet.next();
             firstName = resultSet.getString("firstName");
 
@@ -49,9 +48,7 @@ public class ServicesForDataBase {
             statement.close();
             connection.close();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return firstName;
@@ -66,16 +63,14 @@ public class ServicesForDataBase {
 
             connection = getConnnectionDB();
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("SELECT loginName FROM user WHERE loginName='" + loginName + "'");
+            resultSet = statement.executeQuery(String.format("SELECT loginName FROM user WHERE loginName='%s'", loginName));
             inBase = resultSet.next();
 
             resultSet.close();
             statement.close();
             connection.close();
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
         return inBase;
@@ -86,13 +81,12 @@ public class ServicesForDataBase {
             Connection connection = getConnnectionDB();
             Statement statement = connection.createStatement();
             statement.executeUpdate
-                    ("INSERT INTO user VALUES (NULL, '" + person.getLogin() + "', '" + person.getPassword() + "','" + person.getFirstName() + "','" +
-                            "" + person.getLastName() + "','" + person.getEmail() + "','" + person.getPhoneNumber() + "')");
+                    (String.format("INSERT INTO user VALUES (NULL, '%s', '%s','%s','%s','%s','%s')",
+                            person.getLogin(), person.getPassword(), person.getFirstName(), person.getLastName(),
+                            person.getEmail(), person.getPhoneNumber()));
             statement.close();
             connection.close();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }

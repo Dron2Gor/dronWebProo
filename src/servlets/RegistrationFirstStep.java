@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static logic.ServicesForDataBase.isLoginInBase;
-import static logic.ServicesForDispatcher.doDispatch;
+import static logic.ServicesForDispatcher.doDispatcherAndForward;
 import static logic.ServicesForFields.isEmpty;
 
 @WebServlet("/RegistrationFirstStep")
@@ -34,14 +34,14 @@ public class RegistrationFirstStep extends HttpServlet {
             person.setPassword(password);
 
             request.getSession().setAttribute("person", person);
-            doDispatch("jspS/registrationSecondStep.jsp", request, response);
+            doDispatcherAndForward("jspS/registrationSecondStep.jsp", request, response);
 
         } else {
             request.setAttribute("loginName", loginName);
             error = "Passwords do not match";
         }
         request.setAttribute("error", error);
-        doDispatch("jspS/registrationFirstStep.jsp", request, response);
+        doDispatcherAndForward("jspS/registrationFirstStep.jsp", request, response);
     }
 }
 

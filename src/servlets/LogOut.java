@@ -5,7 +5,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 
-import static logic.ServicesForDispatcher.doDispatch;
+import static logic.ServicesForDispatcher.doDispatcherAndForward;
 
 @WebServlet("/LogOut")
 public class LogOut extends HttpServlet {
@@ -16,9 +16,9 @@ public class LogOut extends HttpServlet {
 
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie:cookies){
-             cookie.setMaxAge(0);
+             if (cookie.getName().equals("firstName")) cookie.setMaxAge(0);
              response.addCookie(cookie);
         }
-        doDispatch("jspS/main.jsp", request, response);
+        doDispatcherAndForward("jspS/main.jsp", request, response);
     }
 }

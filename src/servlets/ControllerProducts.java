@@ -23,9 +23,4 @@ public class ControllerProducts extends HttpServlet{
             RequestDispatcher requestDispatcher=req.getRequestDispatcher("jspS/main.jsp");
             requestDispatcher.forward(req,resp);
     }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-    }
 }

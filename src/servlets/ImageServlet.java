@@ -13,13 +13,10 @@ import java.nio.file.Paths;
 
 @WebServlet("/ImageServlet")
 public class ImageServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String type =request.getParameter("type");
-        System.out.println(type);
+
         response.setContentType("image/jpg");
         Path paths=Paths.get("d:/wolf.jpg");
         ServletOutputStream outputStream = response.getOutputStream();

@@ -9,7 +9,7 @@ import java.io.IOException;
 
 import static logic.ServicesForCockie.*;
 import static logic.ServicesForDataBase.*;
-import static logic.ServicesForDispatcher.doDispatch;
+import static logic.ServicesForDispatcher.doDispatcherAndForward;
 import static logic.ServicesForSession.*;
 
 @WebServlet("/LogIn")
@@ -23,6 +23,7 @@ public class LogIn extends HttpServlet {
 
         if (isLoginInBase(loginName)) {
             String passwordFromBase = getPasswordFromBase(loginName);
+
             if (password.equals(passwordFromBase)) {
 
                 firstName = getFirstNameFromBase(loginName);
@@ -34,18 +35,17 @@ public class LogIn extends HttpServlet {
                 addLoginNameToSession(loginName, request);
                 addPasswordToSession(password, request);
 
-                Boolean isLogIn = true;
-                request.getSession().setAttribute("isLogIn", isLogIn);
-
-                doDispatch("jspS/main.jsp", request, response);
+                request.getSession().setAttribute("isLogIn", true);
+                doDispatcherAndForward("jspS/main.jsp", request, response);
 
             } else
                 error = "Password is incorrect";
+                request.setAttribute("loginName",loginName);
         } else
             error = "User " + loginName + " is not registered";
 
         request.setAttribute("error", error);
-        doDispatch("/jspS/logIn.jsp", request, response);
+        doDispatcherAndForward("/jspS/logIn.jsp", request, response);
 
     }
 }

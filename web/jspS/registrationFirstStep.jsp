@@ -1,16 +1,15 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"  %>
 <html>
 <head>
     <title>Registration 1</title>
 </head>
 <body>
-<%!
-    String loginName="";
-    String error = "";
-%>
 <h3> Registration </h3>
 <h3> 1 step</h3>
-<% if (request.getAttribute("loginName") != null)
+<%  String loginName="";
+    String error = "";
+
+    if (request.getAttribute("loginName") != null)
         loginName = (String) request.getAttribute("loginName");
     if (request.getAttribute("error") != null)
         error = (String) request.getAttribute("error");
@@ -21,7 +20,7 @@
 <%
     error = "";
 %>
-<form action="/RegistrationFirstStep" method="post">
+<form action="${pageContext.request.contextPath}/RegistrationFirstStep" method="post">
 
     Enter login: <input type='text' name='loginName' value="<%=loginName%>"/> <br/>
     Enter password: <input type='password' name='password'/> <br/>

@@ -26,6 +26,7 @@ public class ServicesForCockie {
     }
 
     public static String getFirstNameFromCookie(HttpServletRequest request) {
+
         String firstName = "guest";
         Cookie[] cookies = request.getCookies();
         if (cookies!=null)

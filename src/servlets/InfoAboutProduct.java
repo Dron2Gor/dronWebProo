@@ -14,7 +14,7 @@ import java.io.IOException;
 @WebServlet("/InfoAboutProduct")
 
 public class InfoAboutProduct extends HttpServlet {
-    ModelForProduct model = new ModelForProduct();
+    private ModelForProduct model = new ModelForProduct();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,10 +23,5 @@ public class InfoAboutProduct extends HttpServlet {
         req.setAttribute("product", product);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jspS/infoAboutProduct.jsp");
         requestDispatcher.forward(req, resp);
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req,resp);
     }
 }

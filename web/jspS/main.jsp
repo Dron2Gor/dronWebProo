@@ -1,13 +1,10 @@
 <%@ page import="beans.Product" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="static logic.ServicesForSession.*" %>
 <%@ page import="static logic.ServicesForContext.addProductsToContext" %>
 <%@ page import="static logic.ServicesForCockie.*" %>
-<%@ page import="java.awt.image.BufferedImage" %>
-<%@ page import="javax.imageio.ImageIO" %>
-<%@ page import="java.io.File" %>
-<%@ page import="javax.imageio.stream.ImageOutputStream" %>
+
 <html>
 <head>
     <link href="../css/main.css" rel="stylesheet" type="text/css"/>
@@ -16,10 +13,8 @@
 <body>
 <H1>Welcome to Dron's Store.</H1>
 
-<%!
-    String guest;
-%>
 <%
+    String guest;
     if (request.getSession() == null)
         guest = getFirstNameFromCookie(request);
     else guest = getFirstNameFromSession(request);
@@ -53,10 +48,10 @@
     <p>Price <%=product.getPrice()%> $</p>
 
     <p>
-        <img src="/ImageServlet?type=<%=product.getPrice()%>" alt="Wolf"/>
+        <img src="${pageContext.request.contextPath}/ImageServlet?type=<%=product.getPrice()%>" alt="Wolf"/>
     </p>
 
-    <form action="InfoAboutProduct" method="post">
+    <form action="${pageContext.request.contextPath}/InfoAboutProduct" method="post">
         <button type="submit" name="info" value="<%=product.getIdProduct()%>">more info</button>
     </form>
 
@@ -64,10 +59,6 @@
         <button type="submit" name="buy" value="<%=product.getIdProduct()%>">buy this</button>
     </form>
     <%}%>
-    <%
-
-    %>
-
 </div>
 </body>
 </html>

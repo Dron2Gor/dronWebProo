@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class ServicesForDispatcher {
 
-    public static void doDispatch(String path, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public static void doDispatcherAndForward(String path, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher(path);
         requestDispatcher.forward(request, response);

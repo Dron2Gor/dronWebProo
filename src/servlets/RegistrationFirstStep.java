@@ -20,20 +20,13 @@ public class RegistrationFirstStep extends HttpServlet {
         String loginName = request.getParameter("loginName");
         String password = request.getParameter("password");
         String passwordRepeat = request.getParameter("password_repeat");
-        String error="";
-
-        String regFirstStepPath =  "jspS/registrationFirstStep.jsp";
-        String regSecondStepPath =  "jspS/registrationSecondStep.jsp";
+        String error = "";
 
         if (isEmpty(loginName)) {
-
-            request.setAttribute("error", "login can not be empty");
-            doDispatch(regFirstStepPath,request,response);
-        }
-
-        if (isLoginInBase(loginName)) {
-            request.setAttribute("error", "such login is already in use");
-            doDispatch(regFirstStepPath,request,response);
+            error = "login can not be empty";
+        } else if (isLoginInBase(loginName)) {
+            error = "such login is already in use";
+            loginName = "";
 
         } else if (!isEmpty(password) & passwordRepeat.equals(password)) {
             Person person = new Person();
@@ -41,12 +34,14 @@ public class RegistrationFirstStep extends HttpServlet {
             person.setPassword(password);
 
             request.getSession().setAttribute("person", person);
-            doDispatch(regSecondStepPath,request,response);
+            doDispatch("jspS/registrationSecondStep.jsp", request, response);
 
         } else {
             request.setAttribute("loginName", loginName);
-            request.setAttribute("error", "Passwords do not match");
-            doDispatch(regFirstStepPath,request,response);
+            error = "Passwords do not match";
         }
+        request.setAttribute("error", error);
+        doDispatch("jspS/registrationFirstStep.jsp", request, response);
     }
 }
+

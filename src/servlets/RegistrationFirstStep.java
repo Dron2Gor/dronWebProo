@@ -20,10 +20,13 @@ public class RegistrationFirstStep extends HttpServlet {
         String loginName = request.getParameter("loginName");
         String password = request.getParameter("password");
         String passwordRepeat = request.getParameter("password_repeat");
+        String error="";
+
         String regFirstStepPath =  "jspS/registrationFirstStep.jsp";
         String regSecondStepPath =  "jspS/registrationSecondStep.jsp";
 
         if (isEmpty(loginName)) {
+
             request.setAttribute("error", "login can not be empty");
             doDispatch(regFirstStepPath,request,response);
         }

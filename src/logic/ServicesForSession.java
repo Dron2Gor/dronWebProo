@@ -5,7 +5,7 @@ import javax.servlet.http.HttpSession;
 
 public class ServicesForSession {
 
-    public static Boolean isLogged(HttpServletRequest request) {
+    public static Boolean isLogedInSession(HttpServletRequest request) {
         Boolean isLogIn = false;
         HttpSession session = request.getSession();
         if (session.getAttribute("isLogIn") != null)

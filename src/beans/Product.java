@@ -1,18 +1,38 @@
 package beans;
 
+import java.sql.Blob;
+
 public class Product {
     private String name;
     private Double price;
     private String description;
     private int count;
-    private int id;
+    private int idProduct;
+    private int idCategory;
+    private Blob image;
 
-    public int getId() {
-        return id;
+    public int getIdCategory() {
+        return idCategory;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdCategory(int idCategory) {
+        this.idCategory = idCategory;
+    }
+
+    public Blob getImage() {
+        return image;
+    }
+
+    public void setImage(Blob image) {
+        this.image = image;
+    }
+
+    public int getIdProduct() {
+        return idProduct;
+    }
+
+    public void setIdProduct(int idProduct) {
+        this.idProduct = idProduct;
     }
 
     public String getName() {

@@ -10,6 +10,7 @@ public class ModelForProduct {
     public ModelForProduct() {
         makeListOfProducts();
     }
+
     public int size(){
         return listOfProducts.size();
     }
@@ -24,14 +25,14 @@ public class ModelForProduct {
         product1.setDescription("This is test good. It is very very kind!!!");
         product1.setPrice(88.44);
         product1.setCount(6);
-        product1.setId(0);
+        product1.setIdProduct(0);
 
         Product product2 = new Product();
         product2.setName("PRODUCT #2");
         product2.setDescription("This is good #2. It is not very kind!!!");
         product2.setPrice(22.22);
         product2.setCount(4);
-        product2.setId(1);
+        product2.setIdProduct(1);
         listOfProducts.add(product1);
         listOfProducts.add(product2);
 

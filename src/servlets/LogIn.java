@@ -23,7 +23,7 @@ public class LogIn extends HttpServlet {
         String password = request.getParameter("password");
 
         if (!isLoginInBase(loginName)) {
-            error = "User " + loginName + " is not registered";
+            error = "Us`er " + loginName + " is not registered";
             request.setAttribute("error", error);
             requestDispatcher = request.getRequestDispatcher("/jspS/logIn.jsp");
             requestDispatcher.forward(request, response);

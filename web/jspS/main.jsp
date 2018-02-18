@@ -15,7 +15,7 @@
 
 <%
     String guest;
-    if (request.getSession() == null)
+    if (request.getSession().isNew())
         guest = getFirstNameFromCookie(request);
     else guest = getFirstNameFromSession(request);
 %>
@@ -37,22 +37,29 @@
     <button onclick="location.href='jspS/logIn.jsp'">Log In</button>
 </div>
 <%}%>
-<div class="border">
-    <% addProductsToContext(request);
-        ArrayList<Product> list = (ArrayList<Product>) request.getServletContext().getAttribute("products");
 
+    <jsp:include page="paginationCategories.jsp"/>
+
+<div class="border">
+
+    <jsp:include page="paginationProducts.jsp"/>
+
+    <% if (request.getServletContext().getAttribute("products")==null)
+        addProductsToContext(1,request);
+        ArrayList<Product> list = (ArrayList<Product>) request.getServletContext().getAttribute("products");
         if (list != null)
             for (Product product : list) {
     %>
-    <p>Name <%=product.getName()%> </p>
-    <p>Price <%=product.getPrice()%> $</p>
+    <p>Name: <%=product.getName()%> </p>
+    <p>Price: <%=product.getPrice()%> $</p>
 
     <p>
-        <img src="${pageContext.request.contextPath}/ImageServlet?type=<%=product.getPrice()%>" alt="Wolf"/>
+        <img src="${pageContext.request.contextPath}/blobToImage?idProduct=<%=product.getIdProduct()%>"
+             width="160" height="160" alt="Photo"/>
     </p>
 
     <form action="${pageContext.request.contextPath}/InfoAboutProduct" method="post">
-        <button type="submit" name="info" value="<%=product.getIdProduct()%>">more info</button>
+        <button type="submit" name="idProduct" value="<%=product.getIdProduct()%>">more info</button>
     </form>
 
     <form action="buy" method="post">

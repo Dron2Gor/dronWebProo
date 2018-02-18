@@ -2,6 +2,7 @@ package servlets;
 
 import beans.Product;
 import logic.ModelForProduct;
+import logic.ServicesForDataBase;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,12 +15,12 @@ import java.io.IOException;
 @WebServlet("/InfoAboutProduct")
 
 public class InfoAboutProduct extends HttpServlet {
-    private ModelForProduct model = new ModelForProduct();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int articul = Integer.parseInt(req.getParameter("info"));
-        Product product = model.getProduct(articul);
+
+        int idProduct = Integer.parseInt(req.getParameter("idProduct"));
+        Product product = ServicesForDataBase.getProductFromBaseById(idProduct);
         req.setAttribute("product", product);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jspS/infoAboutProduct.jsp");
         requestDispatcher.forward(req, resp);

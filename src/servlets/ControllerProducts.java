@@ -14,7 +14,8 @@ import java.util.ArrayList;
 
 @WebServlet("/product")
 public class ControllerProducts extends HttpServlet{
-        ModelForProduct model=new ModelForProduct();
+
+    ModelForProduct model=new ModelForProduct(1);
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

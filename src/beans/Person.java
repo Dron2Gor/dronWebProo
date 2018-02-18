@@ -8,6 +8,15 @@ public class Person {
     private String lastName;
     private String email;
     private String phoneNumber;
+    private int idUser;
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
 
     public String getLogin() {
         return login;

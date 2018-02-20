@@ -112,7 +112,7 @@ public class ServicesForDataBase {
         return amount;
     }
 
-    public static ArrayList<Integer> getIdProductFromBaseByNameCategory(String nameCategory){
+    public static ArrayList<Integer> getListIdProductFromBaseByNameCategory(String nameCategory){
          ArrayList<Integer> ids=new ArrayList<>();
 
         try (Statement statement = getStatement()) {
@@ -127,6 +127,7 @@ public class ServicesForDataBase {
         }
         return  ids;
     }
+
     public static String getNameCategoryFromCategoriesById(int id) {
         String nameCategory = null;
         try (Statement statement = getStatement()) {
@@ -194,7 +195,7 @@ public class ServicesForDataBase {
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        System.out.println(getIdProductFromBaseByNameCategory("Modem"));
+        System.out.println(getListIdProductFromBaseByNameCategory("Modem"));
 
     }
 }

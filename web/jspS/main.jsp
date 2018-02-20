@@ -11,7 +11,7 @@
     <title>Dron's Store</title>
 </head>
 <body>
-<H1>Welcome to Dron's Store.</H1>
+<a href="index.jsp"><H1>Welcome to Dron's Store.</H1></a>
 
 <%
     String guest;

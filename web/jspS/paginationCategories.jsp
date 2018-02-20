@@ -6,7 +6,7 @@
     ArrayList<String> names = ServicesForDataBase.getAllCategoryNamesFromCategories();
     for (String nameCategory : names) {
 %>
-    <a href="/PaginationCategories?name=<%=nameCategory%>"><%=nameCategory%></a>
+    <a href="/PaginationCategories?nameCategory=<%=nameCategory%>"><%=nameCategory%></a>
 <%
     }
 %>

@@ -1,5 +1,7 @@
 package logic;
 
+import beans.Basket;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -48,6 +50,14 @@ public class ServicesForSession {
 
         return firstName;
     }
+    public static Basket getBasketFromSesion(HttpServletRequest request){
+        Basket basket=null;
+        if (request.getSession().getAttribute("basket")!=null){
+            basket=(Basket) request.getSession().getAttribute("basket");
+        }
+        return basket;
+    }
+
 
 
 }

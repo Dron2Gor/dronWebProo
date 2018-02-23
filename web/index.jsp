@@ -8,7 +8,7 @@
 </head>
 <body>
 <%
-    request.getSession().invalidate();
+//    request.getSession().invalidate();
     doAutoLogIn(request);
     addProductsToContext(1,request);
 %>

@@ -5,12 +5,18 @@
 </head>
 <body>
     <div>
+        <p>
+            <img src="${pageContext.request.contextPath}/blobToImage?idProduct=${product.idProduct}" width="240" height="240" alt="Photo"/>
+
+        </p>
         <p>Product info</p>
         <p>Name: ${product.name}</p>
         <p>Information: ${product.description}</p>
         <p>Price: ${product.price}</p>
 
-        <button onclick="location.href='/index.jsp'">back</button>
+        <jsp:include page="buttonBack.jsp"/>
+        <%--<button onclick="location.href='/index.jsp'">back</button>--%>
+
     </div>
 </body>
 </html>

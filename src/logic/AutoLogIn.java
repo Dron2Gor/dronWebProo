@@ -16,8 +16,7 @@ public class AutoLogIn {
             addLoginNameToSession(loginName, request);
             addPasswordToSession(password, request);
             addFirstNameToSession(firstName,request);
-            Boolean isLogIn = true;
-            request.getSession().setAttribute("isLogIn", isLogIn);
+            request.getSession().setAttribute("isLogIn", true);
         }
     }
 }

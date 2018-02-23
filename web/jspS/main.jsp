@@ -21,12 +21,11 @@
 <div>
     Hello <%=guest%>
 </div>
+<jsp:include page="viewAmountProductsInBusket.jsp"/>
+
 <% if (isLogedInSession(request)) {%>
 <div>
 
-    <%--<form action="LogOut" method="post">--%>
-    <%--<button type="submit">Log out</button>--%>
-    <%--</form>--%>
     <button onclick="location.href='/LogOut'">Log Out</button>
 
 </div>

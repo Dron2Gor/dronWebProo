@@ -24,8 +24,8 @@
     <button type="submit" name="idProduct" value="<%=product.getIdProduct()%>">more info</button>
 </form>
 
-<form action="buy" method="post">
-    <button type="submit" name="buy" value="<%=product.getIdProduct()%>">buy this</button>
+<form action="${pageContext.request.contextPath}/AddProductToBasket" method="post">
+    <button type="submit" name="idProduct" value="<%=product.getIdProduct()%>">add this to basket</button>
 </form>
 <%
             }

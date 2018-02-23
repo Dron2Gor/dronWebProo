@@ -1,7 +1,7 @@
 package servlets;
 
-import beans.Product;
-import logic.*;
+import logic.ServicesForContext;
+import logic.ServicesForDispatcher;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,6 +21,7 @@ public class PaginationProducts extends HttpServlet {
 
             ArrayList<Integer> listIdProducts = (ArrayList<Integer>) request.getSession().getAttribute("listIdProducts");
             ServicesForContext.addProductsToContext(listIdProducts, page, request);
+
 
         } else {
 

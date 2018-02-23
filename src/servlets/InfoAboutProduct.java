@@ -1,7 +1,6 @@
 package servlets;
 
 import beans.Product;
-import logic.ModelForProduct;
 import logic.ServicesForDataBase;
 
 import javax.servlet.RequestDispatcher;

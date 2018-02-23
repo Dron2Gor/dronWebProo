@@ -25,8 +25,8 @@
     Enter login: <input type='text' name='loginName' value="<%=loginName%>"/> <br/>
     Enter password: <input type='password' name='password'/> <br/>
     Confirm password: <input type='password' name='password_repeat'/> <br/>
-
     <input type='submit' value="Next"/>
 </form>
+    <jsp:include page="buttonBack.jsp"/>
 </body>
 </html>

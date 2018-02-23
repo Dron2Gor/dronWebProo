@@ -31,6 +31,6 @@
     Enter password: <input type='password' name='password' value="<%=password%>"/> <br/>
     <input type='submit' value="Log in"/>
 </form>
-
+<button onclick="location.href='/index.jsp'">back</button>
 </body>
 </html>

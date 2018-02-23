@@ -38,6 +38,8 @@
     Enter phone number: <input type='text' name='phone' value="<%=phone%>" /> <br />
 
     <input type='submit'  value="Registration"/>
+
 </form>
+<jsp:include page="buttonBack.jsp"/>
 </body>
 </html>

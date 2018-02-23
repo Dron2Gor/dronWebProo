@@ -20,6 +20,7 @@ public class ServicesForSession {
     }
 
     public static void addLoginNameToSession(String loginName, HttpServletRequest request) {
+
         HttpSession session = request.getSession();
         session.setAttribute("loginName", loginName);
 

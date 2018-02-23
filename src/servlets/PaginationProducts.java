@@ -1,9 +1,7 @@
 package servlets;
 
 import beans.Product;
-import logic.ServicesForContext;
-import logic.ServicesForDataBase;
-import logic.ServicesForDispatcher;
+import logic.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,18 +16,14 @@ public class PaginationProducts extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int page = Integer.parseInt(request.getParameter("page"));
-        int step = 1;
 
-        if (request.getServletContext().getAttribute("listIdProducts") != null) {
-            ArrayList<Product> products = new ArrayList<Product>();
-            ArrayList<Integer> listIdProducts = (ArrayList<Integer>) request.getServletContext().getAttribute("listIdProducts");
-            for (int i = page * step - step + 1; i <= page * step; i++) {
-                Product product = ServicesForDataBase.getProductFromBaseById(listIdProducts.get(i - 1));
-                products.add(product);
-                request.getServletContext().setAttribute("products", products);
-            }
+        if (request.getSession().getAttribute("listIdProducts") != null) {
+
+            ArrayList<Integer> listIdProducts = (ArrayList<Integer>) request.getSession().getAttribute("listIdProducts");
+            ServicesForContext.addProductsToContext(listIdProducts, page, request);
 
         } else {
+
             ServicesForContext.addProductsToContext(page, request);
         }
         ServicesForDispatcher.doDispatcherAndForward("jspS/main.jsp", request, response);

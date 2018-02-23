@@ -1,5 +1,6 @@
 package servlets;
 
+import logic.ServicesForContext;
 import logic.ServicesForDataBase;
 import logic.ServicesForDispatcher;
 
@@ -14,16 +15,20 @@ import java.util.ArrayList;
 @WebServlet("/PaginationCategories")
 public class PaginationCategories extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String nameCategory=request.getParameter("nameCategory");
+        String nameCategory = request.getParameter("nameCategory");
 
-        ArrayList<Integer> listIdProducts= ServicesForDataBase.getListIdProductFromBaseByNameCategory(nameCategory);
-        request.getServletContext().setAttribute("listIdProducts",listIdProducts);
+        if (nameCategory.equals("all")) {
+            request.getSession().removeAttribute("listIdProducts");
+            ServicesForContext.addProductsToContext(1,request);
+        } else {
+            ArrayList<Integer> listIdProducts = ServicesForDataBase.getListIdProductFromBaseByNameCategory(nameCategory);
+            request.getSession().setAttribute("listIdProducts", listIdProducts);
 
-        ServicesForDispatcher.doDispatcherAndForward("jspS/main.jsp",request,response);
+            if (listIdProducts!=null & !listIdProducts.isEmpty()) ServicesForContext.addProductsToContext(listIdProducts, 1, request);
+            else request.getServletContext().setAttribute("products",null);
+        }
+        ServicesForDispatcher.doDispatcherAndForward("jspS/main.jsp", request, response);
     }
 }

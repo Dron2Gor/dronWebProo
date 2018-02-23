@@ -7,28 +7,33 @@ import java.util.ArrayList;
 public class ModelForProduct {
 
     private ArrayList<Product> listOfProducts = new ArrayList<>();
+    private int step = ServicesForPages.getStep();
 
     public ModelForProduct(int page) {
         makeListOfProducts(page);
     }
+
+
+    public ModelForProduct(ArrayList<Integer> list, int page) {
+        makeListOfProducts(list, page);
+    }
+
     public ArrayList<Product> getListOfProducts() {
         return listOfProducts;
     }
 
-    private void makeListOfProducts(ArrayList<Integer> list) {
-
-    }
-
     private void makeListOfProducts(int page) {
-        int step =1;
-        for (int i = page*step-step+1; i <= page*step; i++) {
+
+        for (int i = page * step - step + 1; i <= page * step; i++) {
             listOfProducts.add(ServicesForDataBase.getProductFromBaseById(i));
         }
     }
-
-
-    public static void main(String[] args) {
-
+    private void makeListOfProducts(ArrayList<Integer> listIdProducts, int page) {
+        int end = page * step;
+        if (end>=listIdProducts.size()) end=listIdProducts.size();
+        for (int i = page * step - step + 1; i <=end; i++) {
+            Product product = ServicesForDataBase.getProductFromBaseById(listIdProducts.get(i - 1));
+            listOfProducts.add(product);
+        }
     }
-
 }

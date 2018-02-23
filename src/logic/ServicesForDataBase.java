@@ -56,15 +56,15 @@ public class ServicesForDataBase {
         try {
             Statement statement = getStatement();
             ResultSet resultSet = statement.executeQuery(String.format("SELECT * FROM products WHERE id_product='%d'", id));
-            resultSet.next();
-            product.setIdProduct(resultSet.getInt("id_product"));
-            product.setName(resultSet.getString("name"));
-            product.setPrice(resultSet.getDouble("price"));
-            product.setCount(resultSet.getInt("count"));
-            product.setDescription(resultSet.getString("description"));
-            product.setIdCategory(resultSet.getInt("id_category"));
-            product.setImage(resultSet.getBlob("image"));
-
+            while (resultSet.next()) {
+                product.setIdProduct(resultSet.getInt("id_product"));
+                product.setName(resultSet.getString("name"));
+                product.setPrice(resultSet.getDouble("price"));
+                product.setCount(resultSet.getInt("count"));
+                product.setDescription(resultSet.getString("description"));
+                product.setIdCategory(resultSet.getInt("id_category"));
+                product.setImage(resultSet.getBlob("image"));
+            }
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -76,7 +76,7 @@ public class ServicesForDataBase {
         try {
             Statement statement = getStatement();
             ResultSet resultSet = statement.executeQuery(String.format("SELECT image FROM products WHERE id_product='%d'", id));
-            resultSet.next();
+            while (resultSet.next())
             blob = resultSet.getBlob("image");
 
         } catch (SQLException | ClassNotFoundException e) {
@@ -195,7 +195,7 @@ public class ServicesForDataBase {
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        System.out.println(getListIdProductFromBaseByNameCategory("Modem"));
+//        System.out.println(getListIdProductFromBaseByNameCategory("Modem"));
 
     }
 }

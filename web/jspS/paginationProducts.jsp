@@ -1,21 +1,27 @@
 <%@ page import="logic.ServicesForDataBase" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="logic.ServicesForPages" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <%
-    int amountPages;
+    int amountPages = -1;
 
-    if (request.getServletContext().getAttribute("listIdProducts") != null) {
-        ArrayList<Integer> listIdProducts = (ArrayList<Integer>) request.getServletContext().getAttribute("listIdProducts");
-        amountPages = listIdProducts.size();
-    } else
-        amountPages = ServicesForDataBase.amountNameOfProductsInBase();
+    if (request.getSession().getAttribute("listIdProducts") != null) {
+        ArrayList<Integer> listIdProducts = (ArrayList<Integer>) request.getSession().getAttribute("listIdProducts");
 
-    for (int i = 1; i <= amountPages; i++) {
+        amountPages = ServicesForPages.getAmountPages(listIdProducts.size());
+    }
+    if (amountPages == -1)
+
+        amountPages = ServicesForPages.getAmountPages(ServicesForDataBase.amountNameOfProductsInBase());
+
+    if (amountPages != 1) {
+        for (int i = 1; i <= amountPages; i++) {
 %>
 <a href="${pageContext.request.contextPath}/PaginationProducts?page=<%=i%>">
     Page<%=i%>
 </a>
 <%
+        }
     }
 %>

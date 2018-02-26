@@ -1,13 +1,12 @@
 package servlets;
 
-import logic.ServicesForDataBase;
+import logic.servicesForDataBase.ServicesForDataBase;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;

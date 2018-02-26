@@ -1,6 +1,6 @@
-<%@ page import="logic.ServicesForDataBase" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="logic.ServicesForPages" %>
+<%@ page import="logic.servicesForDataBase.ServicesForProductDB" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <%
@@ -13,7 +13,7 @@
     }
     if (amountPages == -1)
 
-        amountPages = ServicesForPages.getAmountPages(ServicesForDataBase.amountNameOfProductsInBase());
+        amountPages = ServicesForPages.getAmountPages(ServicesForProductDB.amountNameOfProductsInBase());
 
     if (amountPages != 1) {
         for (int i = 1; i <= amountPages; i++) {

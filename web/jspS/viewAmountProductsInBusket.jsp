@@ -5,7 +5,7 @@
     int amount=0;
     Basket basket=ServicesForSession.getBasketFromSesion(request);
     if (basket!=null){
-        amount=basket.getAmountProductsInBusket();
+        amount=basket.getAmountProductsInBasket();
     }
 %>
 <p>

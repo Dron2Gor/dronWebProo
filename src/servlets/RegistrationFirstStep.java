@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static logic.ServicesForDataBase.isLoginInBase;
+import static logic.servicesForDataBase.ServicesForUserDB.isLoginInBase;
 import static logic.ServicesForDispatcher.doDispatcherAndForward;
 import static logic.ServicesForFields.isEmpty;
 

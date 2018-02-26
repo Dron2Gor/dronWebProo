@@ -1,8 +1,8 @@
 package servlets;
 
 import logic.ServicesForContext;
-import logic.ServicesForDataBase;
 import logic.ServicesForDispatcher;
+import logic.servicesForDataBase.ServicesForProductDB;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,7 +23,7 @@ public class PaginationCategories extends HttpServlet {
             request.getSession().removeAttribute("listIdProducts");
             ServicesForContext.addProductsToContext(1,request);
         } else {
-            ArrayList<Integer> listIdProducts = ServicesForDataBase.getListIdProductFromBaseByNameCategory(nameCategory);
+            ArrayList<Integer> listIdProducts = ServicesForProductDB.getListIdProductFromBaseByNameCategory(nameCategory);
             request.getSession().setAttribute("listIdProducts", listIdProducts);
 
             if (listIdProducts!=null & !listIdProducts.isEmpty()) ServicesForContext.addProductsToContext(listIdProducts, 1, request);

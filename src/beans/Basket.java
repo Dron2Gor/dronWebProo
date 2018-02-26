@@ -8,14 +8,11 @@ public class Basket {
     private HashMap<Integer, Integer> basket;
 
     public Basket() {
-    basket=new HashMap<>();
+        basket = new HashMap<>();
     }
 
     public HashMap<Integer, Integer> getBasket() {
         return basket;
-    }
-    public void setBasket(HashMap<Integer, Integer> basket) {
-        this.basket = basket;
     }
 
     public void addProductToBasket(int idProduct) {
@@ -24,15 +21,20 @@ public class Basket {
             basket.replace(idProduct, count + 1);
         } else basket.put(idProduct, 1);
     }
-    public void removeProductFromBasket(int  idProduct){
-        if (basket.containsKey(idProduct))
+
+    public void removeOneProductFromBasket(int idProduct) {
+        Integer count = basket.get(idProduct)-1;
+        if (count == 0) {
             basket.remove(idProduct);
+        } else basket.put(idProduct,count);
     }
-    public int getAmountProductsInBusket(){
-        int amount=0;
-        for (Map.Entry<Integer,Integer> pair:basket.entrySet()){
-            amount+=pair.getValue();
+
+    public int getAmountProductsInBasket() {
+        int amount = 0;
+        for (Map.Entry<Integer, Integer> pair : basket.entrySet()) {
+            amount += pair.getValue();
         }
-        return  amount;
+        return amount;
     }
+
 }

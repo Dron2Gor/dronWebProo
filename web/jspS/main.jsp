@@ -8,7 +8,7 @@
     <title>Dron's Store</title>
 </head>
 <body>
-<a href="index.jsp"><H1>Welcome to Dron's Store.</H1></a>
+<a href="../index.jsp"><H1>Welcome to Dron's Store.</H1></a>
 
 <%
     String guest = "guest";
@@ -25,7 +25,6 @@
 
 <% if (isLogedInSession(request)) {%>
 <div>
-
     <button onclick="location.href='/LogOut'">Log Out</button>
 
 </div>

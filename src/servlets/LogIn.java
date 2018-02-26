@@ -1,5 +1,7 @@
 package servlets;
 
+import logic.servicesForDataBase.ServicesForUserDB;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static logic.ServicesForCockie.*;
-import static logic.ServicesForDataBase.*;
 import static logic.ServicesForDispatcher.doDispatcherAndForward;
 import static logic.ServicesForSession.*;
 
@@ -21,12 +22,12 @@ public class LogIn extends HttpServlet {
         String firstName;
         String password = request.getParameter("password");
 
-        if (isLoginInBase(loginName)) {
-            String passwordFromBase = getPasswordFromBase(loginName);
+        if (ServicesForUserDB.isLoginInBase(loginName)) {
+            String passwordFromBase = ServicesForUserDB.getPasswordFromBase(loginName);
 
             if (password.equals(passwordFromBase)) {
 
-                firstName = getFirstNameFromBase(loginName);
+                firstName = ServicesForUserDB.getFirstNameFromBase(loginName);
                 addLoginNameToCookie(loginName, response);
                 addPasswordToCookie(password, response);
                 addFirstNameToCookie(firstName, response);

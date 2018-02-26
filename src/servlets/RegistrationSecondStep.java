@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static logic.ServicesForDataBase.addPersonToBase;
+import static logic.servicesForDataBase.ServicesForUserDB.addPersonToBase;
 import static logic.ServicesForDispatcher.doDispatcherAndForward;
 import static logic.ServicesForFields.isEmpty;
 import static logic.ServicesForFields.isNotEmail;

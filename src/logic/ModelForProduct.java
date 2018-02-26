@@ -1,6 +1,7 @@
 package logic;
 
 import beans.Product;
+import logic.servicesForDataBase.ServicesForProductDB;
 
 import java.util.ArrayList;
 
@@ -25,14 +26,15 @@ public class ModelForProduct {
     private void makeListOfProducts(int page) {
 
         for (int i = page * step - step + 1; i <= page * step; i++) {
-            listOfProducts.add(ServicesForDataBase.getProductFromBaseById(i));
+            listOfProducts.add(ServicesForProductDB.getProductFromBaseById(i));
         }
     }
+
     private void makeListOfProducts(ArrayList<Integer> listIdProducts, int page) {
         int end = page * step;
-        if (end>=listIdProducts.size()) end=listIdProducts.size();
-        for (int i = page * step - step + 1; i <=end; i++) {
-            Product product = ServicesForDataBase.getProductFromBaseById(listIdProducts.get(i - 1));
+        if (end >= listIdProducts.size()) end = listIdProducts.size();
+        for (int i = page * step - step + 1; i <= end; i++) {
+            Product product = ServicesForProductDB.getProductFromBaseById(listIdProducts.get(i - 1));
             listOfProducts.add(product);
         }
     }

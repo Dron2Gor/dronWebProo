@@ -13,7 +13,7 @@
     <%
         if (amount>0){
     %>
-    <button onclick="location.href='jspS/viewBasket.jsp'">checkout</button>
+    <button onclick="location.href='/jspS/viewBasket.jsp'">checkout</button>
     <%
         }
     %>

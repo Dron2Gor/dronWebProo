@@ -8,7 +8,7 @@
     <title>Dron's Store</title>
 </head>
 <body>
-<a href="../index.jsp"><H1>Welcome to Dron's Store.</H1></a>
+<a href="${pageContext.request.contextPath}/jspS/main.jsp"><H1>Welcome to Dron's Store.</H1></a>
 
 <%
     String guest = "guest";
@@ -31,8 +31,8 @@
 
 <%} else {%>
 <div>
-    <button onclick="location.href='jspS/registrationFirstStep.jsp'">Registration</button>
-    <button onclick="location.href='jspS/logIn.jsp'">Log In</button>
+    <button onclick="location.href='/jspS/registrationFirstStep.jsp'">Registration</button>
+    <button onclick="location.href='/jspS/logIn.jsp'">Log In</button>
 </div>
 <%}%>
 

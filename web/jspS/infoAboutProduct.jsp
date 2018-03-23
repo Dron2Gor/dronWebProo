@@ -15,7 +15,6 @@
         <p>Price: ${product.price}</p>
 
         <jsp:include page="buttonBack.jsp"/>
-        <%--<button onclick="location.href='/index.jsp'">back</button>--%>
 
     </div>
 </body>

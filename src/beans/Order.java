@@ -8,7 +8,6 @@ public class Order extends Basket {
     }
     private int idOrder;
     private int idUser;
-
     private Date date;
     private String address;
 

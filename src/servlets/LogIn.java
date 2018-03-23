@@ -1,6 +1,7 @@
 package servlets;
 
 import logic.servicesForDataBase.ServicesForUserDB;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,6 +22,7 @@ public class LogIn extends HttpServlet {
         String loginName = request.getParameter("loginName");
         String firstName;
         String password = request.getParameter("password");
+        String pass= DigestUtils.md5Hex(password);
 
         if (ServicesForUserDB.isLoginInBase(loginName)) {
             String passwordFromBase = ServicesForUserDB.getPasswordFromBase(loginName);

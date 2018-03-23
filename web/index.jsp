@@ -12,6 +12,6 @@
     doAutoLogIn(request);
     addProductsToContext(1,request);
 %>
-<jsp:include page="jspS/main.jsp"/>
+<jsp:include page="/jspS/main.jsp"/>
 </body>
 </html>

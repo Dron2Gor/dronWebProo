@@ -21,8 +21,7 @@ public class PlusProduct extends HttpServlet {
         request.getSession().setAttribute("basket",basket);
         ServicesForDispatcher.doDispatcherAndForward("jspS/viewBasket.jsp",request,response);
     }
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doPost(request,response);
     }
 }

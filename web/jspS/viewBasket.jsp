@@ -2,7 +2,6 @@
 <%@ page import="logic.ServicesForSession" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="beans.Product" %>
-<%@ page import="logic.servicesForDataBase.ServicesForDataBase" %>
 <%@ page import="logic.servicesForDataBase.ServicesForProductDB" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
@@ -27,23 +26,33 @@
         <p>Price for one:<%=product.getPrice()%> $</p>
 
         <p>count: <%=pair.getValue()%>
-        <form action="${pageContext.request.contextPath}/MinusProduct" method="post">
-            <button type="submit" name="idProduct" value="<%=product.getIdProduct()%>">-</button>
-        </form>
-        <form action="${pageContext.request.contextPath}/PlusProduct" method="post">
-            <button type="submit" name="idProduct" value="<%=product.getIdProduct()%>">+</button>
-        </form>
+            <button onclick="location.href='${pageContext.request.contextPath}/MinusProduct?idProduct=<%=product.getIdProduct()%>'">-</button>
+            <button onclick="location.href='${pageContext.request.contextPath}/PlusProduct?idProduct=<%=product.getIdProduct()%>'">+</button>
         </p>
-
-
         <p>price for all: <%=summ%> $</p>
 <hr/>
 <%
     }
 %>
 
-<p>Order's price: <%=orderSumm%>
+<p>
+    Order's price: <%=orderSumm%>
 </p>
+
+<%
+String address="";
+String error="";
+if (request.getAttribute("error")!=null){
+    error= (String) request.getAttribute("error");
+}
+%>
+<p><%=error%></p>
+<form action="${pageContext.request.contextPath}/MakeOrder" method="post">
+    Enter shipping address: <input type='text' name="address" value="<%=address%>" />
+    <input type='submit'  value="To order"/>
+</form>
+
+
 <jsp:include page="buttonBack.jsp"/>
 
 </body>

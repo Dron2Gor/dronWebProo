@@ -1,6 +1,5 @@
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="logic.servicesForDataBase.ServicesForDataBase" %>
 <%@ page import="logic.servicesForDataBase.ServicesForProductDB" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <%

@@ -7,6 +7,10 @@ public class Basket {
 
     private HashMap<Integer, Integer> basket;
 
+    public void setBasket(HashMap<Integer, Integer> basket) {
+        this.basket = basket;
+    }
+
     public Basket() {
         basket = new HashMap<>();
     }
@@ -14,6 +18,7 @@ public class Basket {
     public HashMap<Integer, Integer> getBasket() {
         return basket;
     }
+
 
     public void addProductToBasket(int idProduct) {
         if (basket.containsKey(idProduct)) {

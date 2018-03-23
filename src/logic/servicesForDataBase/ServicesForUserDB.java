@@ -32,6 +32,18 @@ public class ServicesForUserDB extends ServicesForDataBase {
         }
         return firstName;
     }
+    public static int getIdUserFromBaseByLogin(String loginName){
+        int idUser=0;
+        try (Statement statement = getStatement()) {
+        ResultSet resultSet=statement.executeQuery(String.format("SELECT id_user FROM user WHERE loginName='%s'",loginName));
+        while (resultSet.next()){
+            idUser=resultSet.getInt("id_user");
+        }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return idUser;
+    }
 
     public static boolean isLoginInBase(String loginName) {
         boolean inBase = false;

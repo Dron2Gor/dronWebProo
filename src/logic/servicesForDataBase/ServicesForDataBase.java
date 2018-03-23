@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class ServicesForDataBase {
 
-    private static Connection getConnnectionDB() throws ClassNotFoundException, SQLException {
+     static Connection getConnnectionDB() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
         String connectionUrl = "jdbc:mysql://localhost:3306/DronShop";
         String password = "8888";
